@@ -64,6 +64,7 @@ code {
   padding: 0.3rem;
   padding-left: 2rem;
   width: 100%;
+  margin-bottom: 3%;
 }
 
 .sub-heading-text {
@@ -73,12 +74,12 @@ code {
 }
 
 
-/*-----------------------
+/*----------------------------------------
   Task
------------------------*/
+-----------------------------------------*/
 .task {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   border: 1px solid var(--clr-main-dark);
   /* border-left: none;
@@ -95,9 +96,22 @@ code {
 }
 
 .checkbox {
-  width: 100%;
-  transform: scale(2);
+  height: 1rem;
+  width: 1rem;
+  transform: scale(1.5);
   transform-origin: center;
+  border: 3px solid white;
+  border-radius: 50%;
+  background-color: var(--clr-bg-dark);
+}
+
+.checkbox:hover {
+  background-color: var(--clr-sub-dark);
+  box-shadow: 0 0 5px gray;
+}
+
+.checkbox:active {
+  background-color: var(--text-clr-dark);
 }
 
 .task-description{
@@ -105,3 +119,25 @@ code {
   width: 70%;
   padding-left: 3%;
 }
+
+.delete-button-div {
+  display: flex;
+}
+
+.delete-button {
+  background-color: var(--clr-bg-dark);
+  color: red;
+  border: none;
+}
+
+.trash-image {
+  height: 1.5rem;
+}
+
+
+/*----------------------------------------
+  Add Task
+-----------------------------------------*/
+
+
+
