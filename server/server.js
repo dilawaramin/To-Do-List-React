@@ -67,10 +67,44 @@ app.post('/api/tasks', (req, res) => {
             res.status(201).json({ message: "Task added successfully!" });
         })
     })
-    
+})
 
+
+// DELETE route to delete tasks in database
+app.delete(`/api/tasks/:id`, (req, res) => {
+    // get task id parameter from URL
+    const {id} = req.params;
+
+    // file path 
+    const basePath = process.cwd();
+    const filePath = path.join(basePath, 'tasks.json');
+
+    fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err) {
+            console.error("Error reading file: ", err);
+            return res.status(500).json({message: "Failed to read file."});
+        }
+
+        // turn tasks from JSON into a string for mutability
+        let tasks = JSON.parse(data);
+        // filter the requested deletion out of tasks
+        const filteredTasks = tasks.filter(task => task.id !== parseInt(id));
+
+        // write the string of tasks back to data
+        fs.writeFile(filePath, JSON.stringify(filteredTasks, null, 2), 'utf8', (err) => {
+
+            // catch any write errors
+            if (err) {
+                console.error("Error writing file: ", err);
+                return res.status(500).json({ message: "Failed to update tasks."});
+            }
+            // no content to send back, but operation successful
+            res.status(204).send();
+        })
+    })
 
 })
+
 
 const PORT = 5004;
 app.listen(PORT, () => {console.log(`Server started on port ${PORT}`)}); 

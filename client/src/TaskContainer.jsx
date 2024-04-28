@@ -4,14 +4,26 @@ import Addtask from "./Addtask";
 
 function TaskContainer() {
 
+    // local list for testing:
     // const tasks = ["Task Number 1", "Task Number 2", "Task Number 3", "Task Number 4", "Task Number 5"]
 
     const [taskList, setTaskList] = useState([]);
 
     // delete function
-    const deleteTask = (taskId) => {
+    const deleteTask = async (taskId) => {
+        // request to server first
+        fetch(`http://localhost:5004/api/tasks/${taskId}`, {method: 'DELETE'})
+        .then(response => {
+            if (!response.ok) {
+                // catch errors in response
+                throw new Error('Network response was not ok (delete)')
+            }
+        // update local list if server deletion success
         setTaskList(prevTasks => prevTasks.filter(task => task.id !== taskId))
-    }
+        })
+        // catch errors
+        .catch(error => console.error('Error deleting task: ', error));
+    };
 
 
     // Populate list of tasks from server
