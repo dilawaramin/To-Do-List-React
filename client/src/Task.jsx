@@ -8,7 +8,10 @@ function Task( {taskName, onDelete} ) {
 
         <div className='task'>
             <div className='task-check'>
-                <input type="checkbox" className='checkbox'/>
+                <button 
+                    className='checkbox'>
+                        
+                </button>
             </div>
             <div className='task-description'>
                 <h3>{taskName}</h3>

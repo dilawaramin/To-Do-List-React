@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 
 
+// initialization
 const app = express() 
 app.use(cors());
 app.use(express.json());
@@ -16,15 +17,18 @@ app.use(express.json());
 // GET route to send tasks
 app.get("/api/tasks", (req, res) => {
 
+    // create filepath variable
     const basePath = process.cwd();
-
     const filePath = path.join(basePath,  'tasks.json')
 
+    // extract data from file to send to server
     fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
             console.log("Error reading file: ", err);
             return res.status(500).json({ message: "Failed to load tasks."})
         }
+
+        // convert data read from JSON back to JSON and send
         res.json(JSON.parse(data));
         console.log("Data Sent!")
     })
@@ -85,12 +89,12 @@ app.delete(`/api/tasks/:id`, (req, res) => {
             return res.status(500).json({message: "Failed to read file."});
         }
 
-        // turn tasks from JSON into a string for mutability
+        // turn tasks from JSON into a JS array for mutability
         let tasks = JSON.parse(data);
         // filter the requested deletion out of tasks
         const filteredTasks = tasks.filter(task => task.id !== parseInt(id));
 
-        // write the string of tasks back to data
+        // write the array of tasks back to JSON file
         fs.writeFile(filePath, JSON.stringify(filteredTasks, null, 2), 'utf8', (err) => {
 
             // catch any write errors
@@ -105,6 +109,6 @@ app.delete(`/api/tasks/:id`, (req, res) => {
 
 })
 
-
+// start server
 const PORT = 5004;
 app.listen(PORT, () => {console.log(`Server started on port ${PORT}`)}); 
