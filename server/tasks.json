@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Task Number 1",
+    "description": "Complete the first module of the course.",
+    "dueDate": "2024-05-30",
+    "id": 1
+  },
+  {
+    "title": "Task Number 2",
+    "description": "Complete the first module of the course.",
+    "dueDate": "2024-05-14",
+    "id": 2
+  },
+  {
+    "title": "Task Number 3",
+    "description": "Complete the first module of the course.",
+    "dueDate": "2024-05-07",
+    "id": 3
+  },
+  {
+    "title": "Task Number 4",
+    "description": "Complete the first module of the course.",
+    "dueDate": "2024-05-24",
+    "id": 4
+  },
+  {
+    "title": "Task Number 5",
+    "description": "Complete the first module of the course.",
+    "dueDate": "2024-06-16",
+    "id": 5
+  }
+]
