@@ -1,0 +1,107 @@
+:root {
+  --clr-bg-dark: #030613;
+  --clr-bg-alt-dark: #0a1928;
+  --clr-sub-dark: #213c53;
+  --text-clr-dark: #e2f1f5;
+  --clr-main-dark: #4fcdb9;
+
+  --reactist-font-family: -apple-system, system-ui, "Segoe UI", Roboto, Noto, Oxygen-Sans, Ubuntu, Cantrell, "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+body {
+  margin: 0;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--clr-bg-dark);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.primary-text {
+  color: var(--clr-main-dark)
+}
+
+/*-----------------------
+  Main Header
+-----------------------*/
+.header {
+  padding: 3vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-div-title {
+  padding: none;
+  text-align: center;
+  background-color: var(  --clr-bg-alt-dark);
+  width: 100%;
+  border-radius: 2em;
+}
+
+.header-title {
+  margin: 3vh;
+  font-size: 2.5em;
+}
+
+
+
+/*-----------------------
+  Tasks Container
+-----------------------*/
+.task-container {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-container-header {
+  padding: 0.3rem;
+  padding-left: 2rem;
+  width: 100%;
+}
+
+.sub-heading-text {
+  color: var(--clr-main-dark);
+  font-size: 1.75em;
+  margin: 2vh;
+}
+
+
+/*-----------------------
+  Task
+-----------------------*/
+.task {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--clr-main-dark);
+  /* border-left: none;
+  border-right: none;
+  border-top: none; */
+  margin-top: none;
+  margin-bottom: 2vh;
+  width: 70%;
+}
+
+.task-check {
+  color: var(--clr-main-dark);
+  padding: 5px;
+}
+
+.checkbox {
+  width: 100%;
+  transform: scale(2);
+  transform-origin: center;
+}
+
+.task-description{
+  color: var(--clr-main-dark);
+  width: 70%;
+  padding-left: 3%;
+}
