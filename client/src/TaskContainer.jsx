@@ -57,17 +57,26 @@ function TaskContainer() {
                 <h2 className='sub-heading-text'>My Tasks:</h2>
             </div>     
 
-            {taskList.map((taskname) => (
-                <Task 
+            {taskList.map((taskname) => {
+                if (taskname.completed === false) {
+                    return (
+                    <Task 
                     key={taskname.id} 
                     taskName={taskname.title} 
                     onDelete={() => deleteTask(taskname.id)}
                 />
-            ))}
+                    )
+                }}
+            )}
 
             <Addtask 
                 addTask={setTaskList} 
                 taskList={taskList}/>
+
+            <div className='task-container-header'>
+                <h2 className='sub-heading-text'>Completed Tasks:</h2>
+            </div>     
+            
             
 
 

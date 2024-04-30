@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import addimg from './icons/add-button.png';
 
 
 function Addtask( {addTask, taskList} ) {
@@ -19,7 +20,7 @@ function Addtask( {addTask, taskList} ) {
         dueDate: DEFAULT_DATE
     });
 
-    // Input data
+    // Input text bar data (used to set task title)
     const [task, setTask] = useState('');
 
     // placeholder click state
@@ -30,6 +31,28 @@ function Addtask( {addTask, taskList} ) {
     const change = event => {
         setTask(event.target.value)
     };
+
+
+    // enter text when 'enter' key is pressed
+    const keyDown = (event) => {
+        if (event.key === 'Enter') {
+            // debugging
+            console.log(`Current task: ${taskObject.title}`);
+            console.log(taskList)
+
+            // calculate new id and create task object
+            const lastTaskId = getLastTaskId();
+            const newId = (lastTaskId === null ? 0 : lastTaskId) + 1;
+            setTaskObject(prevState => ({
+                ...prevState,
+                title: task,
+                description: DEFAULT_DESC,
+                dueDate: DEFAULT_DATE,
+                id: newId
+            }), setThrowaway(throwaway + 1))
+        }
+    }
+
 
     // Click function to enter text
     const click = () => {
@@ -76,6 +99,7 @@ function Addtask( {addTask, taskList} ) {
             // check response
             const data = await response.json();
             console.log('Success:', data);
+            setTask('');
 
         } catch (error) {
             console.error('Error: ', error)
@@ -92,12 +116,21 @@ function Addtask( {addTask, taskList} ) {
 
 
     return(
-        <div>
-            <button onClick={click}>Add Task</button>
+        <div className='add-task'>
+            <button 
+                className='add-task-button'
+                onClick={click}>
+                    +
+                    {/* <img 
+                        className='add-task-image'
+                        src={addimg}/> */}
+            </button>
             <input 
                 type='text' 
-                className='add-task-input' placeholder="Add a new task" 
-                onChange={change}/>
+                className='add-task-input' 
+                placeholder="Add a new task" 
+                onChange={change}
+                onKeyDown={keyDown}/>
         </div>
     )
 }

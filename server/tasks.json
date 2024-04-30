@@ -3,36 +3,35 @@
     "title": "Task Number 1",
     "description": "Complete the first module of the course.",
     "dueDate": "2024-05-30",
+    "completed": false,
     "id": 1
   },
   {
     "title": "Task Number 2",
     "description": "Complete the first module of the course.",
     "dueDate": "2024-05-14",
+    "completed": false,
     "id": 2
   },
   {
     "title": "Task Number 3",
     "description": "Complete the first module of the course.",
     "dueDate": "2024-05-07",
+    "completed": false,
     "id": 3
   },
   {
     "title": "Task Number 4",
     "description": "Complete the first module of the course.",
     "dueDate": "2024-05-24",
+    "completed": false,
     "id": 4
   },
   {
     "title": "Task Number 5",
     "description": "Complete the first module of the course.",
     "dueDate": "2024-06-16",
+    "completed": false,
     "id": 5
-  },
-  {
-    "title": "email advising coordinator",
-    "description": "None",
-    "dueDate": "None",
-    "id": 6
   }
 ]

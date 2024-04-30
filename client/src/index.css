@@ -103,10 +103,11 @@ code {
   border: 3px solid white;
   border-radius: 50%;
   background-color: var(--clr-bg-dark);
+  transition: 0.15s;
 }
 
 .checkbox:hover {
-  background-color: var(--clr-sub-dark);
+  background-color: var(--clr-main-dark);
   box-shadow: 0 0 5px gray;
 }
 
@@ -125,9 +126,26 @@ code {
 }
 
 .delete-button {
+  height: 2rem;
+  width: 2rem;
   background-color: var(--clr-bg-dark);
   color: red;
   border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s;
+}
+
+.delete-button:hover {
+  background-color: rgb(46, 0, 0);
+  box-shadow: 0 0 10px rgb(46, 0, 0);
+}
+
+.delete-button:active {
+  background-color: rgb(80, 0, 0);
+  box-shadow: 0 0 7px rgb(80, 0, 0);
 }
 
 .trash-image {
@@ -138,6 +156,57 @@ code {
 /*----------------------------------------
   Add Task
 -----------------------------------------*/
+.add-task {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 8vh;
+  width: 70%;
+}
 
+.add-task-button {
+  margin-left: 25px;
+  margin-right: 20px;
+  height: 1.75rem;
+  width: 1.75rem;
+  border: 3px solid white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--clr-bg-dark);
+  font-size: 2em;
+  color: var(--text-clr-dark);
+  transition: 0.15s;
+}
 
+.add-task-button:hover {
+  box-shadow: 0 0 0.2rem white;
+  background-color: var(--clr-main-dark);
+}
+
+.add-task-button:active {
+  background-color: var(--text-clr-dark);
+}
+
+.add-task-image {
+  height: 1.5rem;
+  margin-right: 1px;
+}
+
+.add-task-input {
+  margin-left: 3rem;
+  font-size: 1.25em;
+  background-color: var(--clr-sub-dark);
+  border: none;
+  padding: 4px;
+  color: var(--text-clr-dark);
+  border-radius: 5px;
+  width: fit-content;
+}
+
+.add-task-input:active {
+  border: 2px solid var(--clr-main-dark);
+}
 
