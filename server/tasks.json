@@ -10,7 +10,7 @@
     "title": "Task Number 2",
     "description": "Complete the first module of the course.",
     "dueDate": "2024-05-14",
-    "completed": false,
+    "completed": true,
     "id": 2
   },
   {
@@ -33,5 +33,12 @@
     "dueDate": "2024-06-16",
     "completed": false,
     "id": 5
+  },
+  {
+    "title": "Task Number 6",
+    "description": "Complete the first module of the course.",
+    "dueDate": "2024-06-16",
+    "completed": true,
+    "id": 6
   }
 ]

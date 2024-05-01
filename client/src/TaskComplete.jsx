@@ -1,17 +1,15 @@
 import * as React from 'react';
 import trash from './icons/trash-can.png';
 
-function Task( {taskName, task, onCheck, onDelete} ) {
 
+function TaskComplete ({taskName, onDelete}) {
+    
 
     return(
 
         <div className='task'>
             <div className='task-check'>
-                <button 
-                    className='checkbox'
-                    onClick={() => onCheck(task)}
-                >
+                <button className='checkbox'>
                     <img src=''/>
                 </button>
                 
@@ -30,8 +28,7 @@ function Task( {taskName, task, onCheck, onDelete} ) {
             </div>
         </div>
     )
+}
 
-};
+export default TaskComplete
 
-
-export default Task

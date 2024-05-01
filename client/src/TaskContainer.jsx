@@ -1,6 +1,7 @@
 import Task from "./Task";
 import React, {useEffect, useState} from 'react'
 import Addtask from "./Addtask";
+import TaskComplete from "./TaskComplete";
 
 function TaskContainer() {
 
@@ -8,6 +9,27 @@ function TaskContainer() {
     // const tasks = ["Task Number 1", "Task Number 2", "Task Number 3", "Task Number 4", "Task Number 5"]
 
     const [taskList, setTaskList] = useState([]);
+
+
+
+    // complete task function
+    const completeTask = (task) => {
+        setTaskList(prevTask => {
+            // find the passed task and change completed property 
+            return prevTask.map(t => {
+                if (t.id === task.id) {
+                    t.completed = true;
+                    return {...t};
+    
+                }
+                
+                return t;
+            })
+        })
+        
+
+    }
+
 
     // delete function
     const deleteTask = async (taskId) => {
@@ -37,7 +59,7 @@ function TaskContainer() {
             }
         ).then(
             data => {
-                if (Array.isArray(data)) {
+                if (Array.isArray(data) || data === null) {
                     setTaskList(data)
                 } else {
                     throw new Error('Data is not an array')
@@ -50,19 +72,25 @@ function TaskContainer() {
         })
     }, [])
 
+
+
+
+    
     return(
         <section className='task-container'>
 
             <div className='task-container-header'>
                 <h2 className='sub-heading-text'>My Tasks:</h2>
             </div>     
-
+ 
             {taskList.map((taskname) => {
                 if (taskname.completed === false) {
                     return (
                     <Task 
                     key={taskname.id} 
-                    taskName={taskname.title} 
+                    taskName={taskname.title}
+                    task={taskname} 
+                    onCheck={() => completeTask(taskname)}
                     onDelete={() => deleteTask(taskname.id)}
                 />
                     )
@@ -77,7 +105,17 @@ function TaskContainer() {
                 <h2 className='sub-heading-text'>Completed Tasks:</h2>
             </div>     
             
-            
+            {taskList.map((taskname) => {
+                if (taskname.completed === true) {
+                    return (
+                    <TaskComplete 
+                    key={taskname.id} 
+                    taskName={taskname.title}
+                    onDelete={() => deleteTask(taskname.id)}
+                />
+                    )
+                }}
+            )}
 
 
         </section>

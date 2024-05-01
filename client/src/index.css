@@ -98,9 +98,9 @@ code {
 .checkbox {
   height: 1rem;
   width: 1rem;
-  transform: scale(1.5);
+  transform: scale(1.4);
   transform-origin: center;
-  border: 3px solid white;
+  border: 2px solid white;
   border-radius: 50%;
   background-color: var(--clr-bg-dark);
   transition: 0.15s;
@@ -113,6 +113,7 @@ code {
 
 .checkbox:active {
   background-color: var(--text-clr-dark);
+  transition: none;
 }
 
 .task-description{
@@ -170,7 +171,7 @@ code {
   margin-right: 20px;
   height: 1.75rem;
   width: 1.75rem;
-  border: 3px solid white;
+  border: 2px solid white;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -179,6 +180,7 @@ code {
   font-size: 2em;
   color: var(--text-clr-dark);
   transition: 0.15s;
+  padding-top: 2px;
 }
 
 .add-task-button:hover {
