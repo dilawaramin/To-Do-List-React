@@ -48,7 +48,8 @@ function Addtask( {addTask, taskList} ) {
                 title: task,
                 description: DEFAULT_DESC,
                 dueDate: DEFAULT_DATE,
-                id: newId
+                id: newId,
+                completed: false
             }), setThrowaway(throwaway + 1))
         }
     }
@@ -104,6 +105,7 @@ function Addtask( {addTask, taskList} ) {
         } catch (error) {
             console.error('Error: ', error)
         }
+        setTask('')
     }
 
     // Send data back
@@ -128,7 +130,7 @@ function Addtask( {addTask, taskList} ) {
             <input 
                 type='text' 
                 className='add-task-input' 
-                placeholder="Add a new task" 
+                placeholder=" Add a new task" 
                 onChange={change}
                 onKeyDown={keyDown}/>
         </div>

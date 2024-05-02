@@ -13,21 +13,34 @@ function TaskContainer() {
 
 
     // complete task function
-    const completeTask = (task) => {
+    const completeTask = async (task) => {
+
+        const taskId = task.id
+
+        // update the backend
+        fetch(`http://localhost:5004/api/tasks/${taskId}`, {method: 'PATCH'})
+        .then(response => {
+            if (!response.ok) {
+                // catch errors in response
+                throw new Error('Network response was not ok (delete)')
+            }
+
+        // update client side once backend update is successful
         setTaskList(prevTask => {
+
             // find the passed task and change completed property 
             return prevTask.map(t => {
                 if (t.id === task.id) {
                     t.completed = true;
                     return {...t};
-    
                 }
-                
                 return t;
+                })
             })
         })
-        
 
+        // catch errors
+        .catch(error => console.error('Error updating task: ', error));
     }
 
 

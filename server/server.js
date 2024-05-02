@@ -74,6 +74,49 @@ app.post('/api/tasks', (req, res) => {
 })
 
 
+// PATCH route to update completion status of task
+app.patch('/api/tasks/:id', (req, res) => {
+    // get task id parameter from URL
+    const {id} = req.params;
+    const intId = parseInt(id);
+
+    // file path 
+    const basePath = process.cwd();
+    const filePath = path.join(basePath, 'tasks.json');
+
+    fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err) {
+            console.error("Error reading file: ", err);
+            return res.status(500).json({message: "Failed to read file."});
+        }
+
+        // turn tasks from JSON into a JS array for mutability
+        let tasks = JSON.parse(data);
+
+        // map completion of task
+        const updatedTasks = tasks.map(task => {
+            if (task.id == intId) {
+                task.completed = true;
+                return {...task, completed: true};
+            }
+            return {...task}
+        })
+
+        // write the array of tasks back to JSON file
+        fs.writeFile(filePath, JSON.stringify(updatedTasks, null, 2), 'utf8', (err) => {
+
+            // catch any write errors
+            if (err) {
+                console.error("Error writing file: ", err);
+                return res.status(500).json({ message: "Failed to update tasks."});
+            }
+            // no content to send back, but operation successful
+            res.status(204).send();
+        })
+    })
+});
+
+
 // DELETE route to delete tasks in database
 app.delete(`/api/tasks/:id`, (req, res) => {
     // get task id parameter from URL
@@ -107,7 +150,7 @@ app.delete(`/api/tasks/:id`, (req, res) => {
         })
     })
 
-})
+});
 
 // start server
 const PORT = 5004;

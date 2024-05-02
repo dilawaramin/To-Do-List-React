@@ -40,5 +40,19 @@
     "dueDate": "2024-06-16",
     "completed": true,
     "id": 6
+  },
+  {
+    "title": "new task",
+    "description": "None",
+    "dueDate": "None",
+    "id": 7,
+    "completed": true
+  },
+  {
+    "title": "The new task",
+    "description": "None",
+    "dueDate": "None",
+    "id": null,
+    "completed": false
   }
 ]

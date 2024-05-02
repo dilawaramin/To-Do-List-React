@@ -81,13 +81,23 @@ code {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border: 1px solid var(--clr-main-dark);
+  border: 1px solid var(--clr-sub-dark);
   /* border-left: none;
   border-right: none;
   border-top: none; */
   margin-top: none;
   margin-bottom: 2vh;
   width: 70%;
+  transition: 0.1s;
+}
+
+.task:hover {
+  border: 1px solid var(--clr-main-dark);
+  box-shadow: 0 0 3px gray;
+}
+
+.task:hover .delete-button {
+  opacity: 100%;
 }
 
 .task-check {
@@ -136,6 +146,7 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 15%;
   transition: 0.2s;
 }
 
@@ -206,9 +217,36 @@ code {
   color: var(--text-clr-dark);
   border-radius: 5px;
   width: fit-content;
+  line-height: 120%;
+  transition: 0.1s;
+  opacity: 50%;
+}
+
+.add-task-input:hover {
+  opacity: 100%;
 }
 
 .add-task-input:active {
   border: 2px solid var(--clr-main-dark);
+  opacity: 100%;
 }
 
+
+/*----------------------------------------
+  Completed Task
+-----------------------------------------*/
+.task-complete {
+  color: var(--clr-sub-dark);
+  text-decoration: line-through solid var(--clr-sub-dark) 10%;
+  transition: 0.1s;
+}
+
+.task-complete:hover .task-description-complete{
+  color: var(--clr-main-dark);
+  text-decoration: line-through solid var(--clr-main-dark) 10%;
+  transition: 0.1s;
+}
+
+.task-description-complete {
+  color: var(--clr-sub-dark);
+}

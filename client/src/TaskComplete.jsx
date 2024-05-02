@@ -7,14 +7,14 @@ function TaskComplete ({taskName, onDelete}) {
 
     return(
 
-        <div className='task'>
-            <div className='task-check'>
+        <div className='task task-complete'>
+            {/* <div className='task-check'>
                 <button className='checkbox'>
                     <img src=''/>
                 </button>
                 
-            </div>
-            <div className='task-description'>
+            </div> */}
+            <div className='task-description task-description-complete'>
                 <h3>{taskName}</h3>
             </div>
             <div className='delete-button-div'>
