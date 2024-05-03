@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import taskObject from './task.js';
 
 
 
@@ -16,13 +17,40 @@ app.use(express.json());
 
 // MongoDB initialization
 dotenv.config();
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGO_URI);
+
+const Task = mongoose.model('Task', taskObject)
 
 
-// local list for testing 
-/*const taskList = ["Make breakfast", "Walk the cat", "Task Number 3", "finish react project", "Calc homework"]; */ 
+/*-----------------------------------------------------
+ MONGODB OPERATIONS
+ -----------------------------------------------------*/
+
+ // GET route to retrieve all tasks from DB
+ app.get("/api/tasks", async (req, res) => {
+
+    try {
+        // query all tasks from DB
+        const tasks = await Task.find();
+        //console.log(tasks);
+
+        // build and send response as JSON
+        res.json(tasks);
+        console.log("Data Sent!")
+
+    } catch (error) {
+        // catch any errors with retrieving tasks
+        console.error(error);
+        res.status(500).send("Error retrieving tasks from the database");
+    }
+    }
+ );
 
 
+/*-----------------------------------------------------
+ LOCAL JSON FILE DATA STORAGE METHODS
+ -----------------------------------------------------*/
+/*
 // GET route to send tasks
 app.get("/api/tasks", (req, res) => {
 
@@ -43,6 +71,7 @@ app.get("/api/tasks", (req, res) => {
     })
 
 });
+*/
 
 
 // POST route to receive tasks from client
@@ -160,6 +189,7 @@ app.delete(`/api/tasks/:id`, (req, res) => {
     })
 
 });
+
 
 // start server
 const PORT = 5004;
