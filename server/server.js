@@ -2,12 +2,21 @@ import express from 'express'
 import cors from 'cors';
 import fs from 'fs';
 import path from 'path';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+
 
 
 // initialization
 const app = express() 
 app.use(cors());
 app.use(express.json());
+
+
+// MongoDB initialization
+dotenv.config();
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 // local list for testing 
