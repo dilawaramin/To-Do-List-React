@@ -4,7 +4,7 @@ import addimg from './icons/add-button.png';
 
 function Addtask( {addTask, taskList} ) {
 
-    const DEFAULT_DATE = 'None';
+    const DEFAULT_DATE = () => Date.now();
     const DEFAULT_DESC = 'None';
 
     // Get the subsequent id

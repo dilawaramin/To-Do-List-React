@@ -47,6 +47,40 @@ const Task = mongoose.model('Task', taskObject)
  );
 
 
+ // POST route to receive tasks from client
+app.post('/api/tasks', async (req, res) => {
+    console.log('Post was called')  // debugging print
+
+    //  extract task object from request
+    const newTask = req.body;
+
+    // VALIDATION REMOVED: Task properties will be verified on client side
+
+    // create task and save to database
+    const builtTask = new Task(newTask);
+    console.log(builtTask);
+    await builtTask.save()
+    .then(res.status(201).json({ message: "Task added successfully!" }));
+});
+
+
+//  PATCH route to update completion status
+app.patch('/api/tasks/:id', async (req, res) => {
+
+    // get task id parameter from URL
+    const {id} = req.params;
+    const intId = parseInt(id);
+
+    // find and update task
+    let task = await Task.findOne({id: intId});
+    task.completed = true;
+    await task.save()
+    .then(res.status(204).send(), console.log('patch response sent'));
+
+});
+
+
+
 /*-----------------------------------------------------
  LOCAL JSON FILE DATA STORAGE METHODS
  -----------------------------------------------------*/
@@ -74,6 +108,7 @@ app.get("/api/tasks", (req, res) => {
 */
 
 
+/*
 // POST route to receive tasks from client
 app.post('/api/tasks', (req, res) => {
     console.log('Post was called')
@@ -110,8 +145,10 @@ app.post('/api/tasks', (req, res) => {
         })
     })
 })
+*/
 
 
+/* 
 // PATCH route to update completion status of task
 app.patch('/api/tasks/:id', (req, res) => {
     // get task id parameter from URL
@@ -153,6 +190,7 @@ app.patch('/api/tasks/:id', (req, res) => {
         })
     })
 });
+*/
 
 
 // DELETE route to delete tasks in database
