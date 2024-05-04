@@ -23,14 +23,11 @@ function Addtask( {addTask, taskList} ) {
         dueDate: DEFAULT_DATE
     });
 
-
     // Input text bar data (used to set task title)
     const [task, setTask] = useState('');
 
-
     // placeholder click state
     const [throwaway, setThrowaway] = useState(0);
-
 
     // Dynamic text input
     const change = event => {
@@ -39,6 +36,28 @@ function Addtask( {addTask, taskList} ) {
 
 
     // handle adding of a new task
+    const handleTask = () => {
+
+        // Verify task has a title
+        if (!task) {
+            alert('Task must have a name');
+            return;
+        }
+        
+        // calcualate new id
+        const lastTaskId = getLastTaskId();
+        const newId = (lastTaskId === null ? 0 : lastTaskId) + 1;
+
+        // construct task, update throwaway to send
+        setTaskObject(prevState => ({
+            ...prevState,
+            title: task,
+            description: DEFAULT_DESC,
+            dueDate: DEFAULT_DATE(),
+            id: newId,
+            completed: false
+        }), setThrowaway(throwaway + 1))
+    }
 
 
     // enter text when 'enter' key is pressed
@@ -48,17 +67,8 @@ function Addtask( {addTask, taskList} ) {
             console.log(`Current task: ${taskObject.title}`);
             console.log(taskList)
 
-            // calculate new id and create task object
-            const lastTaskId = getLastTaskId();
-            const newId = (lastTaskId === null ? 0 : lastTaskId) + 1;
-            setTaskObject(prevState => ({
-                ...prevState,
-                title: task,
-                description: DEFAULT_DESC,
-                dueDate: DEFAULT_DATE,
-                id: newId,
-                completed: false
-            }), setThrowaway(throwaway + 1))
+            // call function to build and send task object to backend
+            handleTask();
         }
     }
 
@@ -69,27 +79,19 @@ function Addtask( {addTask, taskList} ) {
         console.log(`Current task: ${taskObject.title}`);
         console.log(taskList)
 
-        // calculate new id
-        const lastTaskId = getLastTaskId();
-        const newId = (lastTaskId === null ? 0 : lastTaskId) + 1;
-        setTaskObject(prevState => ({
-            ...prevState,
-            title: task,
-            description: DEFAULT_DESC,
-            dueDate: DEFAULT_DATE,
-            id: newId
-        }), setThrowaway(throwaway + 1))
+        // call function to build and send task object to backend
+        handleTask();
     };
 
-    // send data back 
+
+    // send task object to back end
     const sendData = async (taskObject) => {
 
         // validate data before sending
-        if (!taskObject.title || !taskObject.description || !taskObject.dueDate) {
-            console.error('Validation Failed: Title, Description, and Due Date are required.');
+        if (!taskObject.title || Number.isNaN(taskObject.id) || !taskObject.dueDate) {
+            console.error('Validation Failed: Title, ID, and Due Date are required.');
             return;
         };
-
 
         try {
             const response = await fetch('http://localhost:5004/api/tasks', {
@@ -116,13 +118,13 @@ function Addtask( {addTask, taskList} ) {
         setTask('')
     }
 
+
     // Send data back
     useEffect(() => {
         console.log(`Updated user: ${taskObject.title}`)
         sendData(taskObject)
         addTask(prevTasks => [...prevTasks, taskObject])
     }, [throwaway])
-
 
 
     return(

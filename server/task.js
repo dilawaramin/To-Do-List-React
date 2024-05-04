@@ -1,3 +1,6 @@
+/*----------------------------------------------------------
+    Schema template for Mongoose
+ ----------------------------------------------------------*/
 import mongoose from 'mongoose';
 
 const taskObject = new mongoose.Schema({
