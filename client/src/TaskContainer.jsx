@@ -1,16 +1,14 @@
 import Task from "./Task";
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react';
 import Addtask from "./Addtask";
 import TaskComplete from "./TaskComplete";
+import TaskModal from './TaskModal';
+
 
 function TaskContainer() {
 
-    // local list for testing:
-    // const tasks = ["Task Number 1", "Task Number 2", "Task Number 3", "Task Number 4", "Task Number 5"]
-
+    // list of tasks
     const [taskList, setTaskList] = useState([]);
-
-
 
     // complete task function
     const completeTask = async (task) => {
@@ -85,9 +83,6 @@ function TaskContainer() {
         })
     }, [])
 
-
-
-
     
     return(
         <section className='task-container'>
@@ -100,15 +95,18 @@ function TaskContainer() {
                 if (taskname.completed === false) {
                     return (
                     <Task 
-                    key={taskname.id} 
-                    taskName={taskname.title}
-                    task={taskname} 
-                    onCheck={() => completeTask(taskname)}
-                    onDelete={() => deleteTask(taskname.id)}
-                />
+                        key={taskname.id} 
+                        taskName={taskname.title}
+                        task={taskname} 
+                        onCheck={() => completeTask(taskname)}
+                        onDelete={() => deleteTask(taskname.id)}
+                        
+                    />
                     )
                 }}
             )}
+
+
 
             <Addtask 
                 addTask={setTaskList} 

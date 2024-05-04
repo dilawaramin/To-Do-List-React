@@ -102,10 +102,10 @@ code {
   color: var(--clr-bg-dark);
 }
 
-
 .task:hover .delete-button {
   opacity: 100%;
   background-color: var(--clr-main-dark);
+  transform: 0.1s;
 }
 
 .task-check {
@@ -130,7 +130,7 @@ code {
 .checkbox:hover {
   background-color: white;
   box-shadow: 0 0 5px rgb(36, 36, 36);
-  transition: 0.2s;
+  transition: 0.1s;
 }
 
 .checkbox:hover .checkmark {
@@ -169,16 +169,16 @@ code {
   justify-content: center;
   align-items: center;
   opacity: 15%;
-  transition: 0.2s;
+  transition: 0.1s;
 }
 
 .delete-button:hover {
-  background-color: rgb(46, 0, 0);
+  background-color: rgba(255, 0, 0, 0.308) !important;
   box-shadow: 0 0 10px rgb(46, 0, 0);
 }
 
 .delete-button:active {
-  background-color: rgb(80, 0, 0);
+  background-color: rgba(144, 0, 0, 0.654) !important;
   box-shadow: 0 0 7px rgb(80, 0, 0);
 }
 
@@ -212,8 +212,7 @@ code {
   background-color: var(--clr-bg-dark);
   font-size: 2em;
   color: var(--text-clr-dark);
-  transition: 0.15s;
-  padding-top: 2px;
+  transition: 0.1s;
 }
 
 .add-task-button:hover {
@@ -231,7 +230,6 @@ code {
 }
 
 .add-task-input {
-  margin-left: 3rem;
   font-size: 1.25em;
   background-color: var(--clr-sub-dark);
   border: none;
@@ -249,7 +247,6 @@ code {
 }
 
 .add-task-input:active {
-  border: 2px solid var(--clr-main-dark);
   opacity: 100%;
 }
 
@@ -264,8 +261,8 @@ code {
 }
 
 .task-complete:hover .task-description-complete{
-  color: var(--clr-main-dark);
-  text-decoration: line-through solid var(--clr-main-dark) 10%;
+  color: var(--clr-bg-alt-dark);
+  text-decoration: line-through solid var(--clr-bg-alt-dark) 10%;
   transition: 0.1s;
 }
 

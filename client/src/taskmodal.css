@@ -1,0 +1,13 @@
+.task-modal {
+    position: fixed;
+    z-index: 10;
+    height: 50%;
+    width: 50%;
+    background-color: var(--clr-bg-alt-dark);
+}
+
+.task-modal-title {
+    display: flex;
+    justify-content: center;
+    color: var(--text-clr-dark);
+}

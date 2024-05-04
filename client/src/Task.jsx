@@ -1,12 +1,22 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
+import TaskModal from './TaskModal';
 import trash from './icons/trash-can.png';
+
+
+
 
 function Task( {taskName, task, onCheck, onDelete} ) {
 
+    // task modal function
+    const [modalState, setModalState] = useState(false);
 
     return(
 
-        <div className='task'>
+        <>
+        <div 
+            className='task'
+            onClick={() => setModalState(!modalState)}
+        >
             <div className='task-check'>
                 <button 
                     className='checkbox'
@@ -30,6 +40,12 @@ function Task( {taskName, task, onCheck, onDelete} ) {
                 </button>
             </div>
         </div>
+        {modalState ? 
+            <TaskModal
+                changeState={setModalState}
+                taskObj={task}
+            /> : null}
+        </>
     )
 
 };
