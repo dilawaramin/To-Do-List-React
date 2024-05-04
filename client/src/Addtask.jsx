@@ -4,7 +4,10 @@ import addimg from './icons/add-button.png';
 
 function Addtask( {addTask, taskList} ) {
 
-    const DEFAULT_DATE = () => Date.now();
+    // DEFAULT DATE AND DESCRIPTION VALUES
+    const DEFAULT_DATE = () => {
+        return new Date().toISOString().slice(0, 10);
+    }
     const DEFAULT_DESC = 'None';
 
     // Get the subsequent id
@@ -20,8 +23,10 @@ function Addtask( {addTask, taskList} ) {
         dueDate: DEFAULT_DATE
     });
 
+
     // Input text bar data (used to set task title)
     const [task, setTask] = useState('');
+
 
     // placeholder click state
     const [throwaway, setThrowaway] = useState(0);
@@ -31,6 +36,9 @@ function Addtask( {addTask, taskList} ) {
     const change = event => {
         setTask(event.target.value)
     };
+
+
+    // handle adding of a new task
 
 
     // enter text when 'enter' key is pressed
@@ -131,6 +139,7 @@ function Addtask( {addTask, taskList} ) {
                 type='text' 
                 className='add-task-input' 
                 placeholder=" Add a new task" 
+                value={task}
                 onChange={change}
                 onKeyDown={keyDown}/>
         </div>

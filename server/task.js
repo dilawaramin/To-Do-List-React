@@ -3,10 +3,7 @@ import mongoose from 'mongoose';
 const taskObject = new mongoose.Schema({
     title: String,
     description: String,
-    dueDate: {
-        type: Date,
-        default: () => Date.now(),
-    },
+    dueDate: Date,
     completed: Boolean,
     id: Number
 });

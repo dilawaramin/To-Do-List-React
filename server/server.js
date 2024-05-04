@@ -58,7 +58,6 @@ app.post('/api/tasks', async (req, res) => {
 
     // create task and save to database
     const builtTask = new Task(newTask);
-    console.log(builtTask);
     await builtTask.save()
     .then(res.status(201).json({ message: "Task added successfully!" }));
 });
@@ -78,6 +77,19 @@ app.patch('/api/tasks/:id', async (req, res) => {
     .then(res.status(204).send(), console.log('patch response sent'));
 
 });
+
+
+//  DELETE route to delete tasks
+app.delete('/api/tasks/:id', async (req, res) => {
+
+    // get task id parameter from URL
+    const {id} = req.params;
+    const intId = parseInt(id);
+
+    await Task.deleteOne( {id: intId} )
+    .then(res.status(204).send(), console.log('task deleted'));
+
+})
 
 
 
@@ -193,6 +205,7 @@ app.patch('/api/tasks/:id', (req, res) => {
 */
 
 
+/* 
 // DELETE route to delete tasks in database
 app.delete(`/api/tasks/:id`, (req, res) => {
     // get task id parameter from URL
@@ -227,6 +240,7 @@ app.delete(`/api/tasks/:id`, (req, res) => {
     })
 
 });
+*/
 
 
 // start server
