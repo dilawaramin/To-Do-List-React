@@ -11,8 +11,9 @@ function Task( {taskName, task, onCheck, onDelete} ) {
                 <button 
                     className='checkbox'
                     onClick={() => onCheck(task)}
+                    
                 >
-                    <img src=''/>
+                    <p className='checkmark'>✔</p>
                 </button>
                 
             </div>

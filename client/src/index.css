@@ -22,7 +22,7 @@ code {
 }
 
 .primary-text {
-  color: var(--clr-main-dark)
+  color: var(--text-clr-dark)
 }
 
 /*-----------------------
@@ -45,7 +45,7 @@ code {
 
 .header-title {
   margin: 3vh;
-  font-size: 2.5em;
+  font-size: 2em;
 }
 
 
@@ -68,8 +68,8 @@ code {
 }
 
 .sub-heading-text {
-  color: var(--clr-main-dark);
-  font-size: 1.75em;
+  color: var(--text-clr-dark);
+  font-size: 1.5em;
   margin: 2vh;
 }
 
@@ -94,10 +94,18 @@ code {
 .task:hover {
   border: 1px solid var(--clr-main-dark);
   box-shadow: 0 0 3px gray;
+  background-color: var(--clr-main-dark);
+  color: var(--clr-bg-dark);
 }
+
+.task:hover .task-description {
+  color: var(--clr-bg-dark);
+}
+
 
 .task:hover .delete-button {
   opacity: 100%;
+  background-color: var(--clr-main-dark);
 }
 
 .task-check {
@@ -106,6 +114,9 @@ code {
 }
 
 .checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 1rem;
   width: 1rem;
   transform: scale(1.4);
@@ -117,8 +128,13 @@ code {
 }
 
 .checkbox:hover {
-  background-color: var(--clr-main-dark);
-  box-shadow: 0 0 5px gray;
+  background-color: white;
+  box-shadow: 0 0 5px rgb(36, 36, 36);
+  transition: 0.2s;
+}
+
+.checkbox:hover .checkmark {
+  visibility: visible;
 }
 
 .checkbox:active {
@@ -126,8 +142,14 @@ code {
   transition: none;
 }
 
+.checkmark {
+  visibility: hidden;
+  position: absolute;
+  color: green;
+}
+
 .task-description{
-  color: var(--clr-main-dark);
+  color: var(--text-clr-dark);
   width: 70%;
   padding-left: 3%;
 }
