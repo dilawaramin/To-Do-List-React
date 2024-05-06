@@ -1,13 +1,98 @@
 .task-modal {
     position: fixed;
-    z-index: 10;
-    height: 50%;
-    width: 50%;
+    z-index: 100;
+    height: 40vh;
+    width: 40vw;
     background-color: var(--clr-bg-alt-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+    box-shadow: 0 0 1em var(--clr-main-dark);
+}
+
+.task-modal-text {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    color: var(--text-clr-dark);
 }
 
 .task-modal-title {
     display: flex;
     justify-content: center;
+    font-size: 1.5em;
+}
+
+.task-modal-title h2 {
+    margin: 0;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.task-modal-body {
+    margin: none;
+    display: flex;
+    font-size: 1.25em;
+}
+
+.task-modal-body p {
+    margin: 0;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.modal-input-desc {
+    background-color: var(--clr-sub-dark);
+    font-size: 1.25em;
     color: var(--text-clr-dark);
+    margin: 0;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.task-modal-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1.75em;
+}
+
+.modal-buttons {
+    margin-right: 5%;
+    margin-left: 5%;
+    background-color: var(--clr-main-dark);
+    border: none;
+    font-weight: 700;
+    font-size: 1em;
+    color: var(--clr-bg-dark);
+    padding: 0.7em;
+    opacity: 60%;
+    border-radius: 1em;
+}
+
+.modal-cancel {
+    background-color: red;
+}
+
+.modal-buttons:hover {
+    opacity: 100%;
+}
+
+.modal-blur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

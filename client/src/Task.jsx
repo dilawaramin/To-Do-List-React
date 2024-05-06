@@ -10,6 +10,31 @@ function Task( {taskName, task, onCheck, onDelete} ) {
     // task modal function
     const [modalState, setModalState] = useState(false);
 
+    
+    // description update function
+    const descUpdate = async (task) => {
+        
+        const taskId = task.id
+
+        // update the backend
+        fetch(`http://localhost:5004/api/tasks/desc/${taskId}`, {method: 'PATCH', 
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(task.description)
+        })
+        .then(response => {
+            if (!response.ok) {
+                // catch errors in response
+                throw new Error('Network response was not ok (delete)')
+            }
+        })
+        // catch erros
+        .catch(error => console.error('Error updating description: ', error));
+    }
+
+
+
     return(
 
         <>
@@ -44,6 +69,7 @@ function Task( {taskName, task, onCheck, onDelete} ) {
             <TaskModal
                 changeState={setModalState}
                 taskObj={task}
+                handleUpdate={descUpdate}
             /> : null}
         </>
     )
