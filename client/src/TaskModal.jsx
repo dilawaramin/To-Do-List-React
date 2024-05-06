@@ -7,26 +7,40 @@ function TaskModal( {taskObj, changeState, handleUpdate}) {
         e.stopPropagation();
     };
 
+
     // needed to get updated description data
     const [isEditing, setIsEditing] = useState(false);
     const [description, setDescription] = useState(taskObj.description);
+
 
     // turning description into input field
     const handleDescriptionClick = () => {
         setIsEditing(true);
     };
 
+
+    // set textarea height
+    const adjustHeight = (element) => {
+        element.style.height = 'auto';
+        element.style.height = element.scrollHeight + 'px';
+    };
+
+
     // set the description to whatever is updated
     const handleDescriptionChange = (e) => {
         setDescription(e.target.value);
+
+        adjustHeight(e.target)
     };
+
 
     // handle save of desc
     const handleSave = () => {
         setIsEditing(false);
 
         // set the task objects description
-        taskObj.description = description;
+        const finalDescription = description.trim() === '' ? 'None' : description;
+        taskObj.description = finalDescription;
 
         // call function to update back end
         handleUpdate(taskObj)
@@ -50,7 +64,7 @@ function TaskModal( {taskObj, changeState, handleUpdate}) {
                     <div className="task-modal-body">
 
                         {isEditing ? (
-                                <input
+                            <textarea
                                 className='modal-input-desc'
                                 type="text"
                                 value={description}
@@ -73,7 +87,10 @@ function TaskModal( {taskObj, changeState, handleUpdate}) {
                     >CANCEL</button>
                     <button 
                         className='modal-buttons'
-                        onClick={handleSave}
+                        onClick={() => {
+                            handleSave();
+                            changeState()
+                        }}
                     >SAVE</button>
                 </div>
             </div>

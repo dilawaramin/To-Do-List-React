@@ -9,6 +9,7 @@
     justify-content: space-between;
     border-radius: 10px;
     box-shadow: 0 0 1em var(--clr-main-dark);
+    max-height: 90vh;
 }
 
 .task-modal-text {
@@ -42,6 +43,7 @@
     margin: 0;
     padding-left: 1em;
     padding-right: 1em;
+    width: 100%;
 }
 
 .modal-input-desc {
@@ -51,6 +53,11 @@
     margin: 0;
     margin-left: 1em;
     margin-right: 1em;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: auto;
+    max-height: 100%;
 }
 
 .task-modal-buttons {
