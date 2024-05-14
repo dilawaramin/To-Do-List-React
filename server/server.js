@@ -79,6 +79,25 @@ app.patch('/api/tasks/:id', async (req, res) => {
 });
 
 
+// PATCH route to update description
+app.patch(`/api/tasks/desc/:id`, async (req, res) => {
+
+    // get task id parameter from URL
+    const {id} = req.params;
+    const intId = parseInt(id);
+
+    // extract task description
+    const newTask = req.body;
+
+    // update database, send response
+    let updatedTask = await Task.findOne({id: intId});
+    updatedTask.description = newTask.description;
+    await updatedTask.save()
+    .then(res.status(204).send(), console.log('patch response sent'));
+
+});
+
+
 //  DELETE route to delete tasks
 app.delete('/api/tasks/:id', async (req, res) => {
 

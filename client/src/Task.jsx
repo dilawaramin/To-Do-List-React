@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import TaskModal from './TaskModal';
 import trash from './icons/trash-can.png';
 
@@ -10,6 +10,10 @@ function Task( {taskName, task, onCheck, onDelete} ) {
     // task modal function
     const [modalState, setModalState] = useState(false);
 
+    // stop propogation at delete button:
+    const stopPropagation = (e) => {
+        e.stopPropagation();
+    };
     
     // description update function
     const descUpdate = async (task) => {
@@ -21,7 +25,7 @@ function Task( {taskName, task, onCheck, onDelete} ) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(task.description)
+        body: JSON.stringify(task)
         })
         .then(response => {
             if (!response.ok) {
@@ -58,7 +62,10 @@ function Task( {taskName, task, onCheck, onDelete} ) {
             <div className='delete-button-div'>
                 <button 
                     className='delete-button'
-                    onClick={() => onDelete(taskName.id)}>
+                    onClick={(e) => {
+                                onDelete(taskName.id);
+                                stopPropagation(e);
+                            }}>
                         <img 
                             className="trash-image"
                             src={trash}/>

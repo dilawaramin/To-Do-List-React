@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useRef} from 'react';
 import './taskmodal.css';
 
 function TaskModal( {taskObj, changeState, handleUpdate}) {
@@ -16,7 +16,29 @@ function TaskModal( {taskObj, changeState, handleUpdate}) {
     // turning description into input field
     const handleDescriptionClick = () => {
         setIsEditing(true);
+        // focus the cursor to the end
+        setTimeout(() => {
+            if (descriptionRef.current) {
+                descriptionRef.current.focus();
+                const length = descriptionRef.current.value.length;
+                descriptionRef.current.setSelectionRange(length, length);
+            }
+        }, 0);
     };
+
+
+    // hit enter or escape on textarea
+    const handleKey = (event) => {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            // debugging
+            handleSave();
+            changeState()
+        }
+        if (event.key === 'Escape') {
+            // debugging
+            changeState();
+        }
+    }
 
 
     // set textarea height
@@ -24,6 +46,10 @@ function TaskModal( {taskObj, changeState, handleUpdate}) {
         element.style.height = 'auto';
         element.style.height = element.scrollHeight + 'px';
     };
+
+
+    // textarea cursor position helper func
+    const descriptionRef = useRef(null);
 
 
     // set the description to whatever is updated
@@ -61,14 +87,18 @@ function TaskModal( {taskObj, changeState, handleUpdate}) {
                     <div className='task-modal-title'>
                         <h2>{taskObj.title}</h2>
                     </div>
-                    <div className="task-modal-body">
+                    <div 
+                        className="task-modal-body"
+                        >
 
                         {isEditing ? (
                             <textarea
                                 className='modal-input-desc'
+                                ref={descriptionRef}
                                 type="text"
                                 value={description}
                                 onChange={handleDescriptionChange}
+                                onKeyDown={handleKey}
                                 onBlur={handleSave} // Save on losing focus
                                 autoFocus
                             />

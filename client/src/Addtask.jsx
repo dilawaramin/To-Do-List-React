@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import addimg from './icons/add-button.png';
+import plus from './icons/plus-sign.png';
 
 
 function Addtask( {addTask, taskList} ) {
@@ -132,7 +132,7 @@ function Addtask( {addTask, taskList} ) {
             <button 
                 className='add-task-button'
                 onClick={click}>
-                    +
+                    <img className='add-task-plus' src={plus} />
                     {/* <img 
                         className='add-task-image'
                         src={addimg}/> */}
